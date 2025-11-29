@@ -536,7 +536,7 @@ llm:
 
 [source,toml]
 ----
-baseURL = "https://thejeffparadox.example.com"
+baseURL = "https://thejeffparadox.metadatastician.art"
 languageCode = "en-GB"
 title = "The Jeff Paradox"
 
