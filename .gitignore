@@ -2,6 +2,13 @@
 node_modules/
 vendor/
 .bundle/
+.deno/
+
+# Ada/GNAT build artifacts
+tui/obj/
+tui/bin/
+*.ali
+*.o
 
 # Build outputs
 _site/
@@ -32,6 +39,11 @@ logs/
 .env
 .env.local
 .env.*.local
+container/.env
+
+# Container build cache
+*.tar
+*.oci
 
 # API keys (NEVER commit these)
 **/secrets/
