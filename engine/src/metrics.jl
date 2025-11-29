@@ -349,6 +349,190 @@ function detect_emergent_patterns(game)::Vector{String}
 end
 
 # ============================================================================
+# Semantic/Embedding-Based Metrics (Reservoir-Inspired)
+# ============================================================================
+
+# Cache for embeddings to avoid redundant API calls
+const EMBEDDING_CACHE = Dict{UInt64, Vector{Float64}}()
+
+"""
+    get_cached_embedding(text::String, provider::String="local") -> Vector{Float64}
+
+Get embedding with caching to reduce API calls.
+"""
+function get_cached_embedding(text::String, provider::String="local")::Vector{Float64}
+    key = hash(text)
+    if haskey(EMBEDDING_CACHE, key)
+        return EMBEDDING_CACHE[key]
+    end
+
+    embedding = get_embedding(text, provider)
+    EMBEDDING_CACHE[key] = embedding
+
+    # Limit cache size
+    if length(EMBEDDING_CACHE) > 1000
+        # Remove oldest entries (FIFO approximation)
+        for (k, _) in Iterators.take(EMBEDDING_CACHE, 200)
+            delete!(EMBEDDING_CACHE, k)
+        end
+    end
+
+    embedding
+end
+
+"""
+    compute_semantic_convergence(game, window::Int=20, provider::String="local") -> Float64
+
+Measure semantic similarity between Alpha and Beta nodes using embeddings.
+Unlike vocabulary overlap, this catches "same meaning, different words" convergence.
+Returns 0-1 where 1 is identical meaning.
+
+This is analogous to measuring overlap in reservoir activation space.
+"""
+function compute_semantic_convergence(game, window::Int=20, provider::String="local")::Float64
+    if length(game.turn_history) < window
+        return 0.0
+    end
+
+    recent = game.turn_history[end-window+1:end]
+
+    # Separate by node
+    alpha_turns = filter(t -> t["node"] == "alpha", recent)
+    beta_turns = filter(t -> t["node"] == "beta", recent)
+
+    if isempty(alpha_turns) || isempty(beta_turns)
+        return 0.0
+    end
+
+    # Combine each node's text
+    alpha_text = join([t["action"] for t in alpha_turns], " ")
+    beta_text = join([t["action"] for t in beta_turns], " ")
+
+    # Get embeddings
+    alpha_embedding = get_cached_embedding(alpha_text, provider)
+    beta_embedding = get_cached_embedding(beta_text, provider)
+
+    # Cosine similarity
+    cosine_similarity(alpha_embedding, beta_embedding)
+end
+
+"""
+    compute_semantic_drift(game, window::Int=50, provider::String="local") -> Float64
+
+Measure how much the conversation has drifted from its starting point semantically.
+Returns 0-1 where 1 is maximum drift (completely different topics).
+
+In reservoir computing terms: how far has the system moved from its initial attractor.
+"""
+function compute_semantic_drift(game, window::Int=50, provider::String="local")::Float64
+    if length(game.turn_history) < window
+        return 0.0
+    end
+
+    # Early vs recent text
+    quarter = window ÷ 4
+    early_text = join([t["action"] for t in game.turn_history[1:quarter]], " ")
+    recent_text = join([t["action"] for t in game.turn_history[end-quarter+1:end]], " ")
+
+    early_embedding = get_cached_embedding(early_text, provider)
+    recent_embedding = get_cached_embedding(recent_text, provider)
+
+    # Distance = 1 - similarity
+    semantic_distance(early_embedding, recent_embedding)
+end
+
+"""
+    compute_centroid_embedding(turns::Vector, provider::String="local") -> Vector{Float64}
+
+Compute the centroid (average) embedding of a set of turns.
+Represents the "semantic center" of the conversation - analogous to a fixed point attractor.
+"""
+function compute_centroid_embedding(turns::Vector, provider::String="local")::Vector{Float64}
+    if isempty(turns)
+        return Float64[]
+    end
+
+    embeddings = [get_cached_embedding(t["action"], provider) for t in turns]
+
+    # Element-wise mean
+    centroid = zeros(Float64, length(embeddings[1]))
+    for emb in embeddings
+        centroid .+= emb
+    end
+    centroid ./= length(embeddings)
+
+    centroid
+end
+
+"""
+    compute_turn_novelty(game, turn_text::String, provider::String="local") -> Float64
+
+Measure how semantically novel a new turn is compared to conversation centroid.
+High novelty = divergent thinking. Low novelty = staying in familiar territory.
+Returns 0-1 where 1 is maximum novelty.
+
+This acts as a "surprise" metric - how unexpected is this turn given the attractor?
+"""
+function compute_turn_novelty(game, turn_text::String, provider::String="local")::Float64
+    if length(game.turn_history) < 10
+        return 0.5  # Not enough history
+    end
+
+    # Get centroid of recent conversation
+    recent = game.turn_history[max(1, end-49):end]
+    centroid = compute_centroid_embedding(recent, provider)
+
+    if isempty(centroid)
+        return 0.5
+    end
+
+    # Compare new turn to centroid
+    turn_embedding = get_cached_embedding(turn_text, provider)
+    semantic_distance(turn_embedding, centroid)
+end
+
+"""
+    semantic_health_check(game, provider::String="local") -> Dict{String,Any}
+
+Comprehensive semantic health assessment of the conversation.
+Returns status and recommendations for maintaining dialogue diversity.
+"""
+function semantic_health_check(game, provider::String="local")::Dict{String,Any}
+    convergence = compute_semantic_convergence(game, 20, provider)
+    drift = compute_semantic_drift(game, 50, provider)
+
+    # Determine health status
+    status = if convergence > 0.9
+        :critical  # Nodes saying same thing
+    elseif convergence > 0.8
+        :warning   # Getting too similar
+    elseif drift < 0.1 && length(game.turn_history) > 100
+        :stagnant  # Not going anywhere new
+    else
+        :healthy
+    end
+
+    # Recommendations
+    recommendations = String[]
+    if convergence > 0.8
+        push!(recommendations, "Inject diversity prompt to differentiate nodes")
+    end
+    if drift < 0.1 && length(game.turn_history) > 100
+        push!(recommendations, "Introduce new topic or scenario element")
+    end
+    if convergence < 0.3 && drift > 0.7
+        push!(recommendations, "Nodes highly divergent - consider coherence check")
+    end
+
+    Dict{String,Any}(
+        "semantic_convergence" => convergence,
+        "semantic_drift" => drift,
+        "status" => status,
+        "recommendations" => recommendations
+    )
+end
+
+# ============================================================================
 # Metrics Summary
 # ============================================================================
 
