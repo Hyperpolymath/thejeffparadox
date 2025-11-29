@@ -536,7 +536,7 @@ llm:
 
 [source,toml]
 ----
-baseURL = "https://thejeffparadox.example.com"
+baseURL = "https://thejeffparadox.metadatastician.art"
 languageCode = "en-GB"
 title = "The Jeff Paradox"
 
@@ -731,10 +731,11 @@ We cannot see that space directly. We can only observe its traces.
 [appendix]
 == References
 
+* Berkeley, G. (1710). _A Treatise Concerning the Principles of Human Knowledge_.
 * Chater, N. (2018). _The Mind is Flat_. Allen Lane.
+* Gregory, J. & Horton, P. The Jeff Paradox. DriftForge Games. 
 * Jaeger, H. (2014). Controlling recurrent neural networks by conceptors. arXiv:1403.3369.
 * Kant, I. (1781/1787). _Critique of Pure Reason_.
-* Berkeley, G. (1710). _A Treatise Concerning the Principles of Human Knowledge_.
 
 [appendix]
 == Changelog
