@@ -37,7 +37,6 @@ thejeffparadox/
 ### Prerequisites
 
 - Julia 1.9+
-- Ruby 3.0+ with Bundler
 - Hugo extended 0.120+
 - At least one LLM API key (Anthropic, Mistral, or local)
 
@@ -46,10 +45,6 @@ thejeffparadox/
 ```bash
 # Install Julia dependencies
 cd engine && julia --project=. -e 'using Pkg; Pkg.instantiate()'
-
-# Install Ruby dependencies
-cd node-alpha && bundle install
-cd node-beta && bundle install
 
 # Set API keys
 export ANTHROPIC_API_KEY="sk-ant-..."
