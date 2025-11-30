@@ -4,7 +4,7 @@
 baseURL = "https://thejeffparadox.example.com"
 languageCode = "en-GB"
 title = "The Jeff Paradox"
-theme = ""
+# No theme - using custom layouts
 
 # Build settings
 enableRobotsTXT = true

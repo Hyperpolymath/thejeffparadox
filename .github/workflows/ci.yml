@@ -46,7 +46,7 @@ jobs:
         continue-on-error: true
 
       - name: Check Markdown
-        uses: DavidAnson/markdownlint-cli2-action@db4f21d71a924e68fea27e1a2b3c67e58f823bd8 # v21.0.0
+        uses: DavidAnson/markdownlint-cli2-action@30a0e04f1870d58f8d717450cc6134995f993c63 # v21.0.0
         with:
           globs: "**/*.md"
         continue-on-error: true
