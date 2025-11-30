@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # run_turn.sh - Execute a single turn of The Jeff Paradox
-# Requires: Julia 1.9+, environment variables for API keys
+# Requires: Julia 1.10+, Hugo 0.120+, environment variables for API keys
 
 set -euo pipefail
 
@@ -48,9 +48,9 @@ else
     initialise_game_state(config_path)
 end
 
-# Load nodes
-alpha_path = joinpath(dirname(@__DIR__), "node-alpha", "_data", "node_state.yml")
-beta_path = joinpath(dirname(@__DIR__), "node-beta", "_data", "node_state.yml")
+# Load nodes (Hugo uses data/ not _data/)
+alpha_path = joinpath(dirname(@__DIR__), "node-alpha", "data", "node_state.yml")
+beta_path = joinpath(dirname(@__DIR__), "node-beta", "data", "node_state.yml")
 
 alpha = initialise_node_state(alpha_path)
 beta = initialise_node_state(beta_path)
@@ -68,9 +68,10 @@ turn_filename = @sprintf("%04d-%s.md", result.turn_number, lowercase(result.node
 turn_path = joinpath(dirname(@__DIR__), "orchestrator", "content", "turns", turn_filename)
 save_turn_to_markdown(result, turn_path)
 
-# Also save to appropriate node
+# Also save to appropriate node (Hugo uses content/ not _posts/)
 node_dir = result.node_name == "Alpha" ? "node-alpha" : "node-beta"
-node_turn_path = joinpath(dirname(@__DIR__), node_dir, "_posts", turn_filename)
+node_turn_path = joinpath(dirname(@__DIR__), node_dir, "content", "turns", turn_filename)
+mkpath(dirname(node_turn_path))
 save_turn_to_markdown(result, node_turn_path)
 
 println("Turn $(result.turn_number) completed: $(result.node_name)")
@@ -85,16 +86,15 @@ fi
 
 # Rebuild static sites (optional, for local preview)
 if [[ "${REBUILD_SITES:-false}" == "true" ]]; then
-    log "Rebuilding Hugo site"
+    log "Rebuilding Hugo sites"
     cd "$ORCHESTRATOR_DIR"
     hugo --quiet
 
-    log "Rebuilding Jekyll sites"
     cd "$PROJECT_ROOT/node-alpha"
-    bundle exec jekyll build --quiet
+    hugo --quiet
 
     cd "$PROJECT_ROOT/node-beta"
-    bundle exec jekyll build --quiet
+    hugo --quiet
 fi
 
 log "Turn complete"
