@@ -3,10 +3,25 @@ cff-version: 1.2.0
 title: "The Jeff Paradox: An LLM Diachronic Identity Experiment"
 message: "If you use this software, please cite both the software and the original game."
 type: software
+version: "1.0.0"
+date-released: "2025-12-09"
 authors:
   - name: "The Jeff Paradox Collaboration"
 repository-code: "https://github.com/Hyperpolymath/thejeffparadox"
+url: "https://hyperpolymath.github.io/thejeffparadox"
 license: MIT
+keywords:
+  - LLM
+  - artificial-intelligence
+  - diachronic-identity
+  - emergent-behavior
+  - philosophy-of-mind
+  - machine-cognition
+abstract: >-
+  An experimental framework for investigating diachronic identity in Large Language Models
+  through structured adversarial dialogue. Two AI personality fragments engage in infinite
+  structured dialogue, competing for control of a shared fictional body, while researchers
+  observe for signs of emergence, differentiation, convergence, and self-modelling.
 
 references:
   - type: game

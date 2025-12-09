@@ -23,7 +23,8 @@ software engineering.
 
 This project and everyone participating in it is governed by our
 [Code of Conduct](CODE_OF_CONDUCT.md). By participating, you are expected to
-uphold this code. Please report unacceptable behaviour to conduct@example.com.
+uphold this code. Please report unacceptable behaviour via
+[GitHub Issues](https://github.com/Hyperpolymath/thejeffparadox/issues/new?labels=conduct).
 
 ## What We're Looking For
 
@@ -311,7 +312,7 @@ This project has a philosophical dimension. We welcome:
 - **General questions**: [Discussions](https://github.com/Hyperpolymath/thejeffparadox/discussions)
 - **Bug reports**: [Issues](https://github.com/Hyperpolymath/thejeffparadox/issues)
 - **Security issues**: [SECURITY.md](SECURITY.md)
-- **Code of conduct**: conduct@example.com
+- **Code of conduct**: [GitHub Issues](https://github.com/Hyperpolymath/thejeffparadox/issues/new?labels=conduct)
 
 ---
 

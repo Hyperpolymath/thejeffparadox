@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-12-09
+
 ### Added
 
 - Initial Julia game engine with anti-convergence mechanisms
@@ -15,12 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Containerfile for Wolfi-based deployment
 - Comprehensive documentation (claude.adoc, whitepaper)
 - RSR compliance infrastructure
+- STATE.scm project checkpoint system
+- Conversation automation with 6-hour turn cycles
+- 15 turns of autonomous dialogue between Alpha and Beta nodes
+- Daily metrics reports with vocabulary diversity tracking
+- Statistical framework documentation (ADF tests, Hotelling T², Bayes factors)
 
 ### Fixed
 
 - JeffEngine module exports and include order
 - GitHub Actions SHA pinning for all dependencies
 - Hugo theme configuration
+
+### Changed
+
+- Upgraded to MVP-complete status with fully operational experiment
 
 ## [0.1.0] - 2025-11-29
 

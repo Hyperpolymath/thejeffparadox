@@ -15,5 +15,5 @@ THIRD-PARTIES: N
 # - Static site generation means no server-side user tracking
 # - GitHub Pages may collect basic access logs (see GitHub's privacy policy)
 
-# For questions about this policy, contact:
-# privacy@example.com
+# For questions about this policy, visit:
+# https://github.com/Hyperpolymath/thejeffparadox/discussions

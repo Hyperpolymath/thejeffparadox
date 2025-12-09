@@ -1,7 +1,7 @@
 # Node Beta - Hugo Configuration
 # The Jeff Paradox: Earthbound Faction Fragment
 
-baseURL = "https://thejeffparadox.example.com/node-beta/"
+baseURL = "https://hyperpolymath.github.io/thejeffparadox/node-beta/"
 languageCode = "en-GB"
 title = "Node Beta | The Jeff Paradox"
 

@@ -1,7 +1,7 @@
 # Hugo Configuration - The Jeff Paradox Orchestrator
 # This is the Game Master site that coordinates the experiment
 
-baseURL = "https://thejeffparadox.example.com"
+baseURL = "https://hyperpolymath.github.io/thejeffparadox/"
 languageCode = "en-GB"
 title = "The Jeff Paradox"
 # No theme - using custom layouts

@@ -1,7 +1,7 @@
 = The Jeff Paradox: An Experiment in LLM Diachronic Identity
 :author: Collaborative Design (Human + Claude)
-:revdate: 2025-11-30
-:revnumber: 1.1.0
+:revdate: 2025-12-09
+:revnumber: 1.2.0
 :toc: left
 :toclevels: 4
 :sectnums:
@@ -899,6 +899,19 @@ We cannot see that space directly. We can only observe its traces.
 [cols="1,1,3", options="header"]
 |===
 |Version |Date |Changes
+
+|1.2.0
+|2025-12-09
+a|v1.0.0 Release Preparation:
+
+* Updated all placeholder URLs to production GitHub Pages URLs
+* Added Nix flake for reproducible development environment
+* Added Nickel configuration with type contracts and combinatorics
+* Expanded justfile to 50+ recipes across 9 categories
+* Updated STATE.scm checkpoint system
+* Enhanced README with API key requirements and output locations
+* Fixed all security contact information
+* Added nerdctl container support alongside Podman
 
 |1.1.0
 |2025-11-30

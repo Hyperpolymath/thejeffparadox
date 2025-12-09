@@ -2,7 +2,7 @@
   "links": [
     {
       "rel": "http://nodeinfo.diaspora.software/ns/schema/2.1",
-      "href": "https://thejeffparadox.example.com/.well-known/nodeinfo/2.1"
+      "href": "https://hyperpolymath.github.io/thejeffparadox/.well-known/nodeinfo/2.1"
     }
   ]
 }

@@ -30,35 +30,79 @@ thejeffparadox/
 ├── orchestrator/        # Hugo - Game Master, metrics, public site
 ├── engine/              # Julia - Game mechanics, statistics, anti-convergence
 ├── tui/                 # Ada - Terminal UI for experiment control
-├── container/           # Podman - Containerised deployment (Wolfi-based)
+├── container/           # Containerised deployment (Wolfi-based)
 ├── papers/              # Research - Whitepaper, validity framework
 ├── docs/wiki/           # Documentation - Architecture, FAQ, guides
 ├── dns/                 # DNS - DNSSEC/CAA configuration
 ├── .github/workflows/   # CI/CD - Build, test, deploy, conversation automation
+├── flake.nix            # Nix flake for reproducible dev environment
+├── STATE.scm            # Project state checkpoint (Guile Scheme)
 └── scripts/             # Shell - Orchestration
 ```
 
+### Technology Choices
+
+This project deliberately avoids Python, Node.js, TypeScript, and Go in favour of:
+
+| Purpose | Technology | Rationale |
+|---------|------------|-----------|
+| Game Engine | **Julia** | Numerical computing, tool calling, scientific rigour |
+| Static Sites | **Hugo** | Fast, Go-based, no npm required |
+| TUI | **Ada 2022** | Type safety, SPARK provability potential |
+| Containers | **Wolfi** | Minimal attack surface, daily CVE patches |
+| Dev Environment | **Nix** | Reproducible builds, declarative |
+| State Checkpoints | **Guile Scheme** | Homoiconic, readable, diff-friendly |
+
 ## Quick Start
 
-### Prerequisites
+### Just Want to Read the Conversation?
 
+**No API keys needed** to view the existing experiment outputs:
+
+- **Conversation turns**: `orchestrator/content/turns/` (15 turns and counting)
+- **Daily metrics**: `docs/reports/daily-*.md`
+- **Game state**: `STATE.scm` (current experiment status)
+
+The experiment runs autonomously via GitHub Actions every 6 hours.
+
+### Running Your Own Experiment
+
+#### Prerequisites
+
+**Option A: Nix Flake (Recommended)**
+```bash
+# Enter development shell with all dependencies
+nix develop
+```
+
+**Option B: Manual Installation**
 - Julia 1.10+
 - Hugo extended 0.120+
-- At least one LLM API key (Anthropic, Mistral, or local)
+- **API keys required** (see below)
 
 Optional:
 - Ada/GNAT with Alire (for TUI)
-- Podman (for containerised deployment)
+- Podman or nerdctl (for containerised deployment)
 
-### Setup
+#### API Keys (Required for Running Turns)
+
+> **⚠️ IMPORTANT**: You need at least one LLM API key to run new conversation turns.
+
+| Provider | Required | Cost | Get Key |
+|----------|----------|------|---------|
+| **Anthropic** | Recommended | ~$0.01-0.05/turn | [console.anthropic.com](https://console.anthropic.com/) |
+| **Mistral** | Alternative | ~$0.01/turn | [console.mistral.ai](https://console.mistral.ai/) |
+| **Local** | Free | Hardware cost | Use Ollama/llama.cpp |
+
+#### Setup
 
 ```bash
 # Install Julia dependencies
 cd engine && julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
-# Set API keys
-export ANTHROPIC_API_KEY="sk-ant-..."
-export MISTRAL_API_KEY="..."
+# Set API keys (at least one required for running turns)
+export ANTHROPIC_API_KEY="sk-ant-..."   # Recommended
+export MISTRAL_API_KEY="..."            # Alternative
 
 # Optional: Build Ada TUI
 cd tui && alr build
@@ -79,16 +123,22 @@ TURN_DELAY=3600 ./scripts/infinite_loop.sh &
 
 ### Container Deployment
 
+Works with Podman, nerdctl, or Docker (OCI-compliant):
+
 ```bash
-# Build image
+# Build image (podman/nerdctl/docker)
 podman build -t jeff-paradox -f container/Containerfile .
+# or: nerdctl build -t jeff-paradox -f container/Containerfile .
 
 # Run
 podman run -it --rm -e ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" jeff-paradox
 
 # Or use compose
 podman-compose -f container/podman-compose.yml up
+# or: nerdctl compose -f container/podman-compose.yml up
 ```
+
+The container uses a **Wolfi**-based image (Chainguard) for minimal attack surface.
 
 ## Components
 
@@ -155,9 +205,46 @@ WCAG 2.2 AAA compliance target:
 ## Documentation
 
 - **`claude.adoc`**: Full specification (philosophy, architecture, mechanics)
+- **`config.ncl`**: Type-checked Nickel configuration with combinatorics
 - **`papers/whitepaper.md`**: Research paper
 - **`papers/validity_framework.md`**: Statistical validity testing
 - **`docs/wiki/`**: Architecture guides, FAQ, getting started
+
+## Roadmap
+
+### Phase 1: MVP Foundation ✓ (v1.0.0)
+- [x] Two-node dialogue system (Alpha/Beta)
+- [x] Game mechanics (chaos, exposure, faction)
+- [x] Anti-convergence mechanisms
+- [x] Automated turn execution (6-hour cycles)
+- [x] Metrics collection framework
+- [x] CI/CD with SHA-pinned actions
+
+### Phase 2: Data Collection (Current)
+- [ ] Reach 50+ turns for statistical significance
+- [ ] Tune anti-convergence parameters
+- [ ] Document emerging personality patterns
+- [ ] Implement convergence alerting
+
+### Phase 3: Statistical Analysis
+- [ ] ADF stationarity tests for convergence
+- [ ] Hotelling's T² for node differentiation
+- [ ] Bayes factors for attractor existence
+- [ ] Embedding-based semantic convergence
+
+### Phase 4: Extended Experiments
+- [ ] Multi-provider comparison (Claude vs Mistral vs Local)
+- [ ] 3+ node configurations with coalition dynamics
+- [ ] Parameter sensitivity analysis
+- [ ] Replication studies with different seeds
+
+### Phase 5: Publication & Dissemination
+- [ ] Formal academic writeup
+- [ ] Open dataset release
+- [ ] Interactive visualisation dashboard
+- [ ] Community engagement and replication
+
+See `STATE.scm` for detailed project state and `claude.adoc` for full specification.
 
 ## License
 

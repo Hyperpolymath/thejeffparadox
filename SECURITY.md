@@ -75,9 +75,9 @@ All containers use **Wolfi**-based images (Chainguard) for:
 
 ## Reporting Vulnerabilities
 
-Please report security vulnerabilities to:
-- Email: security@example.com (update with real address)
-- Or create a private security advisory on GitHub
+Please report security vulnerabilities via:
+- [GitHub Security Advisories](https://github.com/Hyperpolymath/thejeffparadox/security/advisories/new) (preferred)
+- Or contact the maintainers through GitHub Issues with a "security" label for non-sensitive matters
 
 Do NOT create public issues for security vulnerabilities.
 

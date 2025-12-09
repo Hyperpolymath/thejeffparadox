@@ -1,7 +1,7 @@
 # Node Alpha - Hugo Configuration
 # The Jeff Paradox: Homeward Faction Fragment
 
-baseURL = "https://thejeffparadox.example.com/node-alpha/"
+baseURL = "https://hyperpolymath.github.io/thejeffparadox/node-alpha/"
 languageCode = "en-GB"
 title = "Node Alpha | The Jeff Paradox"
 

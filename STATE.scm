@@ -13,10 +13,11 @@
 (define state
   '((metadata
      (format-version . "2.0")
-     (schema-version . "2025-12-08")
+     (schema-version . "2025-12-09")
      (created-at . "2025-12-08T00:00:00Z")
-     (last-updated . "2025-12-08T00:00:00Z")
-     (generator . "Claude/STATE-system"))
+     (last-updated . "2025-12-09T00:00:00Z")
+     (generator . "Claude/STATE-system")
+     (release-version . "1.0.0"))
 
     (user
      (name . "The Jeff Paradox Team")
@@ -28,10 +29,11 @@
       (values . ("reproducibility" "philosophical-rigor" "open-science" "minimal-dependencies"))))
 
     (session
-     (conversation-id . "2025-12-08-STATE-REVIEW")
-     (started-at . "2025-12-08T00:00:00Z")
+     (conversation-id . "2025-12-09-v1.0.0-RELEASE")
+     (started-at . "2025-12-09T00:00:00Z")
      (experiment-turn . 15)
-     (experiment-status . "running"))
+     (experiment-status . "running")
+     (release-status . "v1.0.0-released"))
 
     ;;; ==================================================
     ;;; CURRENT POSITION

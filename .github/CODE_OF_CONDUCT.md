@@ -72,8 +72,8 @@ representative at an online or offline event.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour may be
-reported to the community leaders responsible for enforcement at
-**conduct@example.com**.
+reported to the community leaders responsible for enforcement via
+[GitHub Issues](https://github.com/Hyperpolymath/thejeffparadox/issues/new?labels=conduct).
 
 All complaints will be reviewed and investigated promptly and fairly.
 

@@ -22,10 +22,9 @@ Instead, please report security vulnerabilities through one of these channels:
    - Click "Report a vulnerability"
    - Fill out the form with details
 
-2. **Email**:
-   - Send details to: security@example.com
-   - Use our PGP key (see below) for sensitive information
-   - Include "SECURITY" in the subject line
+2. **GitHub Issues** (for non-sensitive matters):
+   - Create an issue with the "security" label
+   - Do not include sensitive details in public issues
 
 ### What to Include
 
@@ -177,8 +176,8 @@ Mitigations:
 
 ## Security Contacts
 
-- **Primary**: security@example.com
-- **Backup**: [GitHub Security Advisories](https://github.com/Hyperpolymath/thejeffparadox/security)
+- **Primary**: [GitHub Security Advisories](https://github.com/Hyperpolymath/thejeffparadox/security/advisories/new)
+- **Backup**: [GitHub Issues](https://github.com/Hyperpolymath/thejeffparadox/issues/new?labels=security) (non-sensitive only)
 
 ## Acknowledgments
 
@@ -195,4 +194,4 @@ who report valid security issues will be acknowledged here (with permission):
 
 ---
 
-Last updated: 2025-11-29
+Last updated: 2025-12-09

@@ -1,6 +1,6 @@
 # Security Policy for The Jeff Paradox
-Contact: mailto:security@example.com
+Contact: https://github.com/Hyperpolymath/thejeffparadox/security/advisories/new
 Expires: 2026-12-31T23:59:59.000Z
 Preferred-Languages: en
-Canonical: https://thejeffparadox.example.com/.well-known/security.txt
-Policy: https://thejeffparadox.example.com/security-policy/
+Canonical: https://hyperpolymath.github.io/thejeffparadox/.well-known/security.txt
+Policy: https://github.com/Hyperpolymath/thejeffparadox/blob/main/SECURITY.md

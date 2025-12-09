@@ -37,8 +37,8 @@ Hallucination-Note: |
 # CONTACT
 # ============================================================================
 
-AI-Contact: mailto:ai-ethics@example.com
-General-Contact: mailto:contact@example.com
+AI-Contact: https://github.com/Hyperpolymath/thejeffparadox/discussions/categories/ai-ethics
+General-Contact: https://github.com/Hyperpolymath/thejeffparadox/discussions
 Discussion: https://github.com/Hyperpolymath/thejeffparadox/discussions
 
 # ============================================================================
@@ -54,4 +54,4 @@ Notes: |
   "The opinions and beliefs expressed do not represent anyone.
   They are the hallucinations of a slab of silicon."
 
-Last-Updated: 2025-11-29
+Last-Updated: 2025-12-09

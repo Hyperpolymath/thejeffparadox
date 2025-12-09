@@ -4,9 +4,9 @@
 [general]
 name = "jeff_tui"
 description = "Terminal UI for The Jeff Paradox experiment control"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["The Jeff Paradox Contributors"]
-maintainers = ["thejeffparadox@example.com"]
+maintainers = ["Hyperpolymath"]
 maintainers-logins = ["hyperpolymath"]
 licenses = "MIT"
 website = "https://github.com/Hyperpolymath/thejeffparadox"
