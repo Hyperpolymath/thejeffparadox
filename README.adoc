@@ -1,19 +1,19 @@
-# The Jeff Paradox
+= The Jeff Paradox
 
 An experiment in LLM diachronic identity.
 
-## What Is This?
+== What Is This?
 
 Two AI personality fragments engage in infinite structured dialogue, competing
 for control of a shared fictional body. One wants to return home. One wants to stay.
 
 We observe for signs of:
-- **Emergence**: Do novel patterns appear?
-- **Differentiation**: Do the nodes develop distinct personalities?
-- **Convergence**: Do they collapse into repetitive equilibrium?
-- **Self-modelling**: Do they develop stable self-concepts?
+- *Emergence*: Do novel patterns appear?
+- *Differentiation*: Do the nodes develop distinct personalities?
+- *Convergence*: Do they collapse into repetitive equilibrium?
+- *Self-modelling*: Do they develop stable self-concepts?
 
-## The Philosophical Question
+== The Philosophical Question
 
 > What if there is continuity of existence between LLM interactions,
 > independent of the observer? What if the LLM exists between states?
@@ -21,7 +21,7 @@ We observe for signs of:
 This is the Kantian suprasensible substrate problem applied to machine cognition.
 We cannot access the thing-in-itself. But we can look for traces.
 
-## Architecture
+== Architecture
 
 ```
 thejeffparadox/
@@ -38,9 +38,9 @@ thejeffparadox/
 └── scripts/             # Shell - Orchestration
 ```
 
-## Quick Start
+== Quick Start
 
-### Prerequisites
+=== Prerequisites
 
 - Julia 1.10+
 - Hugo extended 0.120+
@@ -50,47 +50,47 @@ Optional:
 - Ada/GNAT with Alire (for TUI)
 - Podman (for containerised deployment)
 
-### Setup
+=== Setup
 
 ```bash
-# Install Julia dependencies
+= Install Julia dependencies
 cd engine && julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
-# Set API keys
+= Set API keys
 export ANTHROPIC_API_KEY="sk-ant-..."
 export MISTRAL_API_KEY="..."
 
-# Optional: Build Ada TUI
+= Optional: Build Ada TUI
 cd tui && alr build
 ```
 
-### Run
+=== Run
 
 ```bash
-# Single turn
+= Single turn
 ./scripts/run_turn.sh
 
-# Infinite loop (daemon)
+= Infinite loop (daemon)
 TURN_DELAY=3600 ./scripts/infinite_loop.sh &
 
-# Metrics report
+= Metrics report
 ./scripts/metrics_report.sh
 ```
 
-### Container Deployment
+=== Container Deployment
 
 ```bash
-# Build image
+= Build image
 podman build -t jeff-paradox -f container/Containerfile .
 
-# Run
+= Run
 podman run -it --rm -e ANTHROPIC_API_KEY="$ANTHROPIC_API_KEY" jeff-paradox
 
-# Or use compose
+= Or use compose
 podman-compose -f container/podman-compose.yml up
 ```
 
-## Components
+== Components
 
 | Component | Technology | Purpose |
 |-----------|------------|---------|
@@ -101,17 +101,17 @@ podman-compose -f container/podman-compose.yml up
 | TUI | Ada 2022 | Terminal interface for experiment control |
 | Container | Wolfi/Podman | Secure, minimal container deployment |
 
-## Anti-Convergence
+== Anti-Convergence
 
 The experiment implements conceptor-inspired mechanisms to prevent the
 conversation from collapsing into repetitive patterns:
 
-- **Diversity injection**: Periodic prompts that shift perspective
-- **Contradiction seeding**: Dissonant elements when coherence is too high
-- **Aperture control**: Temperature modulation based on vocabulary diversity
-- **Pattern quarantine**: Discourage overused phrases
+- *Diversity injection*: Periodic prompts that shift perspective
+- *Contradiction seeding*: Dissonant elements when coherence is too high
+- *Aperture control*: Temperature modulation based on vocabulary diversity
+- *Pattern quarantine*: Discourage overused phrases
 
-## Metrics & Statistics
+== Metrics & Statistics
 
 We track:
 - Vocabulary diversity (type-token ratio)
@@ -127,16 +127,16 @@ Statistical framework includes:
 - Bayes factors for attractor existence
 - ICC for cross-run consistency
 
-## CI/CD
+== CI/CD
 
 GitHub Actions automate:
-- **ci.yml**: Linting, Julia tests, Hugo builds
-- **deploy.yml**: GitHub Pages deployment
-- **conversation.yml**: Scheduled/manual turn execution
-- **codeql.yml**: Security scanning
-- **metrics-report.yml**: Automated analysis reports
+- *ci.yml*: Linting, Julia tests, Hugo builds
+- *deploy.yml*: GitHub Pages deployment
+- *conversation.yml*: Scheduled/manual turn execution
+- *codeql.yml*: Security scanning
+- *metrics-report.yml*: Automated analysis reports
 
-## Accessibility
+== Accessibility
 
 WCAG 2.2 AAA compliance target:
 - 7:1 contrast ratio minimum
@@ -144,7 +144,7 @@ WCAG 2.2 AAA compliance target:
 - Screen reader optimised
 - Reduced motion support
 
-## Security
+== Security
 
 - All API calls over HTTPS
 - No secrets in repository
@@ -152,21 +152,21 @@ WCAG 2.2 AAA compliance target:
 - `.well-known` resources provided
 - Container runs as non-root with dropped capabilities
 
-## Documentation
+== Documentation
 
-- **`claude.adoc`**: Full specification (philosophy, architecture, mechanics)
-- **`papers/whitepaper.md`**: Research paper
-- **`papers/validity_framework.md`**: Statistical validity testing
-- **`docs/wiki/`**: Architecture guides, FAQ, getting started
+- *`claude.adoc`*: Full specification (philosophy, architecture, mechanics)
+- *`papers/whitepaper.md`*: Research paper
+- *`papers/validity_framework.md`*: Statistical validity testing
+- *`docs/wiki/`*: Architecture guides, FAQ, getting started
 
-## License
+== License
 
 MIT
 
-## Acknowledgements
+== Acknowledgements
 
-**Based on [The Jeff Paradox](https://criticalkit.us/products/the-jeff-paradox)**
-by **Tim Roberts** / [Critical Kit LLC](https://criticalkit.us).
+*Based on [The Jeff Paradox](https://criticalkit.us/products/the-jeff-paradox)*
+by *Tim Roberts* / [Critical Kit LLC](https://criticalkit.us).
 
 - Tim Roberts / Critical Kit (*The Jeff Paradox* TTRPG)
 - Nick Chater (*The Mind Is Flat*)
