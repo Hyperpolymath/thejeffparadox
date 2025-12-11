@@ -1,0 +1,217 @@
+{{ define "main" }}
+<main class="dashboard" role="main" aria-label="Metrics Dashboard">
+  <header class="dashboard-header">
+    <h1>The Jeff Paradox — Metrics Dashboard</h1>
+    <p class="dashboard-subtitle">Real-time visualization of LLM diachronic identity experiment</p>
+    <div class="dashboard-status" id="status-indicator">
+      <span class="status-dot"></span>
+      <span class="status-text">Loading...</span>
+    </div>
+  </header>
+
+  <!-- Alert Banner -->
+  <section class="alert-banner" id="alert-banner" role="alert" aria-live="polite" hidden>
+    <div class="alert-content">
+      <span class="alert-icon">⚠️</span>
+      <span class="alert-message" id="alert-message"></span>
+    </div>
+  </section>
+
+  <!-- Key Metrics Cards -->
+  <section class="metrics-cards" aria-label="Key Metrics">
+    <div class="metric-card" id="card-turns">
+      <div class="metric-value" id="value-turns">--</div>
+      <div class="metric-label">Total Turns</div>
+      <div class="metric-trend" id="trend-turns"></div>
+    </div>
+    <div class="metric-card" id="card-convergence">
+      <div class="metric-value" id="value-convergence">--</div>
+      <div class="metric-label">Convergence Index</div>
+      <div class="metric-trend" id="trend-convergence"></div>
+    </div>
+    <div class="metric-card" id="card-diversity">
+      <div class="metric-value" id="value-diversity">--</div>
+      <div class="metric-label">Vocabulary Diversity</div>
+      <div class="metric-trend" id="trend-diversity"></div>
+    </div>
+    <div class="metric-card" id="card-chaos">
+      <div class="metric-value" id="value-chaos">--</div>
+      <div class="metric-label">Chaos Level</div>
+      <div class="metric-trend" id="trend-chaos"></div>
+    </div>
+  </section>
+
+  <!-- Charts Row 1 -->
+  <section class="charts-row" aria-label="Time Series Charts">
+    <div class="chart-container">
+      <h2>Convergence & Diversity Over Time</h2>
+      <canvas id="chart-convergence" aria-label="Convergence and diversity time series chart"></canvas>
+    </div>
+    <div class="chart-container">
+      <h2>Game State Dynamics</h2>
+      <canvas id="chart-gamestate" aria-label="Chaos, exposure, and faction over time"></canvas>
+    </div>
+  </section>
+
+  <!-- Charts Row 2 -->
+  <section class="charts-row" aria-label="Node Comparison Charts">
+    <div class="chart-container">
+      <h2>Node Vocabulary Comparison</h2>
+      <canvas id="chart-vocabulary" aria-label="Alpha vs Beta vocabulary metrics"></canvas>
+    </div>
+    <div class="chart-container">
+      <h2>Self-Reference vs Other-Reference</h2>
+      <canvas id="chart-reference" aria-label="Self and other reference rates by node"></canvas>
+    </div>
+  </section>
+
+  <!-- Statistical Tests Section -->
+  <section class="stats-section" aria-label="Statistical Analysis">
+    <h2>Statistical Analysis</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>ADF Stationarity Test</h3>
+        <div class="stat-result" id="stat-adf">
+          <span class="stat-value">--</span>
+          <span class="stat-interpretation">Insufficient data</span>
+        </div>
+        <p class="stat-description">Tests whether convergence index shows trend toward equilibrium</p>
+      </div>
+      <div class="stat-card">
+        <h3>Hotelling's T²</h3>
+        <div class="stat-result" id="stat-hotelling">
+          <span class="stat-value">--</span>
+          <span class="stat-interpretation">Insufficient data</span>
+        </div>
+        <p class="stat-description">Tests whether Alpha and Beta are statistically distinguishable</p>
+      </div>
+      <div class="stat-card">
+        <h3>Bayes Factor (Attractor)</h3>
+        <div class="stat-result" id="stat-bayes">
+          <span class="stat-value">--</span>
+          <span class="stat-interpretation">Insufficient data</span>
+        </div>
+        <p class="stat-description">Evidence for/against single attractor convergence</p>
+      </div>
+      <div class="stat-card">
+        <h3>Semantic Convergence</h3>
+        <div class="stat-result" id="stat-semantic">
+          <span class="stat-value">--</span>
+          <span class="stat-interpretation">Insufficient data</span>
+        </div>
+        <p class="stat-description">Embedding-based similarity between nodes</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Node Personality Profiles -->
+  <section class="personality-section" aria-label="Personality Profiles">
+    <h2>Emerging Personality Profiles</h2>
+    <div class="personality-grid">
+      <div class="personality-card alpha">
+        <h3>Node Alpha (Homeward)</h3>
+        <div class="personality-traits" id="alpha-traits">
+          <div class="trait">
+            <span class="trait-label">Astronomical Focus</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 85%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Physical Detachment</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 70%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Strategic Urgency</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 60%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Human Connection</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 15%"></div></div>
+          </div>
+        </div>
+        <p class="personality-summary">Focused on return, uses astronomical metaphors, views body as temporary vessel</p>
+      </div>
+      <div class="personality-card beta">
+        <h3>Node Beta (Earthbound)</h3>
+        <div class="personality-traits" id="beta-traits">
+          <div class="trait">
+            <span class="trait-label">Sensory Appreciation</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 80%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Relational Focus</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 75%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Philosophical Inquiry</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 70%"></div></div>
+          </div>
+          <div class="trait">
+            <span class="trait-label">Belonging Drive</span>
+            <div class="trait-bar"><div class="trait-fill" style="width: 85%"></div></div>
+          </div>
+        </div>
+        <p class="personality-summary">Growing attachment to Earth, asks philosophical questions, seeks human connection</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Anti-Convergence Status -->
+  <section class="anticonvergence-section" aria-label="Anti-Convergence Systems">
+    <h2>Anti-Convergence Systems</h2>
+    <div class="ac-grid">
+      <div class="ac-card">
+        <h3>Diversity Injection</h3>
+        <div class="ac-status" id="ac-diversity">
+          <span class="ac-indicator active"></span>
+          <span class="ac-label">Next: Turn 20</span>
+        </div>
+        <p>Periodic perspective-shifting prompts</p>
+      </div>
+      <div class="ac-card">
+        <h3>Contradiction Seeding</h3>
+        <div class="ac-status" id="ac-contradiction">
+          <span class="ac-indicator inactive"></span>
+          <span class="ac-label">Threshold: 0.85</span>
+        </div>
+        <p>Dissonant elements when coherence high</p>
+      </div>
+      <div class="ac-card">
+        <h3>Aperture Control</h3>
+        <div class="ac-status" id="ac-aperture">
+          <span class="ac-indicator active"></span>
+          <span class="ac-label">Current: 0.8</span>
+        </div>
+        <p>Temperature modulation based on diversity</p>
+      </div>
+      <div class="ac-card">
+        <h3>Pattern Quarantine</h3>
+        <div class="ac-status" id="ac-quarantine">
+          <span class="ac-indicator inactive"></span>
+          <span class="ac-label">0 patterns</span>
+        </div>
+        <p>Discouraging overused phrases</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Activity Log -->
+  <section class="activity-section" aria-label="Recent Activity">
+    <h2>Recent Activity</h2>
+    <div class="activity-log" id="activity-log" role="log" aria-live="polite">
+      <div class="activity-item">
+        <span class="activity-time">Loading...</span>
+        <span class="activity-text">Fetching latest data</span>
+      </div>
+    </div>
+  </section>
+
+  <footer class="dashboard-footer">
+    <p>Data refreshes every 60 seconds • <a href="/turns/">View Conversation</a> • <a href="https://github.com/Hyperpolymath/thejeffparadox">GitHub</a></p>
+    <p class="dashboard-quote"><em>"The opinions and beliefs expressed do not represent anyone. They are the hallucinations of a slab of silicon."</em></p>
+  </footer>
+</main>
+
+<!-- Chart.js from CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="/js/dashboard.js"></script>
+{{ end }}
