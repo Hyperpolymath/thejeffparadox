@@ -4,7 +4,7 @@ defmodule DashboardStatic.MixProject do
   def project do
     [
       app: :dashboard_static,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.15",
       deps: deps(),
       name: "Jeff Paradox Dashboard (Static)",

@@ -135,7 +135,7 @@ in
 # =============================================================================
 
 let JeffParadoxConfig = {
-  version | String | default = "1.0.0",
+  version | String | default = "1.1.0",
 
   nodes | {
     alpha | NodeConfig,
@@ -191,7 +191,7 @@ let faction_combinations = [
 
 {
   default = {
-    version = "1.0.0",
+    version = "1.1.0",
 
     nodes = {
       alpha = {

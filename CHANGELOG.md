@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-12-11
+
+### Added
+
+- Repo maintenance workflow (robot-repo-cleaner) for automated cleanup
+  - Artifact cleanup with configurable retention
+  - Merged branch pruning
+  - Cache management
+  - Repository health reports
+- Git hooks for quality checks
+  - Pre-commit hook with secret scanning, large file detection, SHA pinning verification
+  - Commit-msg hook for conventional commits format enforcement
+- CI summary job with required checks aggregation
+- Setup recipe in justfile for full project initialization
+
+### Changed
+
+- Julia tests now required (removed continue-on-error)
+- CI workflow clearly separates required vs advisory checks
+- Justfile updated with hooks management recipes
+
+### Fixed
+
+- CI workflow now properly fails on test failures
+
 ## [1.0.0] - 2025-12-09
 
 ### Added

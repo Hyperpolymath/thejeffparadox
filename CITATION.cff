@@ -3,8 +3,8 @@ cff-version: 1.2.0
 title: "The Jeff Paradox: An LLM Diachronic Identity Experiment"
 message: "If you use this software, please cite both the software and the original game."
 type: software
-version: "1.0.0"
-date-released: "2025-12-09"
+version: "1.1.0"
+date-released: "2025-12-11"
 authors:
   - name: "The Jeff Paradox Collaboration"
 repository-code: "https://github.com/Hyperpolymath/thejeffparadox"

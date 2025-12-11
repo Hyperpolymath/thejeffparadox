@@ -17,7 +17,7 @@
      (created-at . "2025-12-08T00:00:00Z")
      (last-updated . "2025-12-09T00:00:00Z")
      (generator . "Claude/STATE-system")
-     (release-version . "1.0.0"))
+     (release-version . "1.1.0"))
 
     (user
      (name . "The Jeff Paradox Team")
@@ -29,11 +29,11 @@
       (values . ("reproducibility" "philosophical-rigor" "open-science" "minimal-dependencies"))))
 
     (session
-     (conversation-id . "2025-12-09-v1.0.0-RELEASE")
-     (started-at . "2025-12-09T00:00:00Z")
+     (conversation-id . "2025-12-11-v1.1.0-RELEASE")
+     (started-at . "2025-12-11T00:00:00Z")
      (experiment-turn . 15)
      (experiment-status . "running")
-     (release-status . "v1.0.0-released"))
+     (release-status . "v1.1.0-released"))
 
     ;;; ==================================================
     ;;; CURRENT POSITION

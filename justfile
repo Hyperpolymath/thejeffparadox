@@ -292,7 +292,7 @@ c: clean
 
 # Show project info
 info:
-    @echo "The Jeff Paradox v1.0.0"
+    @echo "The Jeff Paradox v1.1.0"
     @echo "======================="
     @echo "An experiment in LLM diachronic identity"
     @echo ""
