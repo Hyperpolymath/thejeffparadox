@@ -12,16 +12,27 @@ url: "https://hyperpolymath.github.io/thejeffparadox"
 license: MIT
 keywords:
   - LLM
+  - large-language-models
   - artificial-intelligence
   - diachronic-identity
   - emergent-behavior
   - philosophy-of-mind
   - machine-cognition
+  - semantic-embeddings
+  - convergence-detection
+  - multi-agent-dialogue
+  - conceptors
+  - anti-convergence
+  - julia
+  - elixir-phoenix
+  - adversarial-collaboration
 abstract: >-
   An experimental framework for investigating diachronic identity in Large Language Models
-  through structured adversarial dialogue. Two AI personality fragments engage in infinite
-  structured dialogue, competing for control of a shared fictional body, while researchers
-  observe for signs of emergence, differentiation, convergence, and self-modelling.
+  through structured adversarial dialogue. AI personality fragments engage in infinite
+  structured dialogue (2+ nodes supported), competing for control of a shared fictional body.
+  Features embedding-based semantic convergence detection, conceptor-inspired anti-convergence
+  mechanisms, and real-time metrics reporting. Researchers observe for signs of emergence,
+  differentiation, convergence, and self-modelling.
 
 references:
   - type: game

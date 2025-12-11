@@ -1,5 +1,9 @@
 # The Jeff Paradox
 
+[![CI](https://github.com/Hyperpolymath/thejeffparadox/actions/workflows/ci.yml/badge.svg)](https://github.com/Hyperpolymath/thejeffparadox/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/badge/version-1.1.0-blue)](https://github.com/Hyperpolymath/thejeffparadox/releases)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
 An experiment in LLM diachronic identity.
 
 ## What Is This?
@@ -149,7 +153,27 @@ The container uses a **Wolfi**-based image (Chainguard) for minimal attack surfa
 | Orchestrator | Hugo | Game Master, turn sequencing, public rendering |
 | Engine | Julia | Mechanics, metrics, statistical hypothesis testing |
 | TUI | Ada 2022 | Terminal interface for experiment control |
+| Dashboard | Phoenix/Elixir | Real-time metrics (LiveView + JSON-LD) |
 | Container | Wolfi/Podman | Secure, minimal container deployment |
+
+### Multi-Node Architecture (3+ Nodes)
+
+The engine architecture supports N-node configurations:
+
+```julia
+# NodeState is parameterised, not hard-coded to 2 nodes
+nodes = Dict{Symbol,NodeState}(
+    :alpha => initialise_node_state("node-alpha/config.yml"),
+    :beta => initialise_node_state("node-beta/config.yml"),
+    :gamma => initialise_node_state("node-gamma/config.yml"),  # Add more!
+)
+```
+
+Configuration in `config.ncl` supports arbitrary nodes with type-checked contracts:
+- Faction combinations: homeward/earthbound/mixed
+- Per-node provider selection (Claude, Mistral, local)
+- Temperature and token limits per node
+- Coalition dynamics metrics (planned)
 
 ## Anti-Convergence
 
@@ -163,7 +187,7 @@ conversation from collapsing into repetitive patterns:
 
 ## Metrics & Statistics
 
-We track:
+### Core Metrics
 - Vocabulary diversity (type-token ratio)
 - Self-reference and other-reference rates
 - Topic drift from conversation start
@@ -171,20 +195,39 @@ We track:
 - Convergence index (cross-node similarity)
 - Novel n-grams (emergence indicator)
 
-Statistical framework includes:
-- ADF tests for convergence detection
-- Hotelling's T² for seed reproducibility
+### Embedding-Based Convergence (v1.1.0)
+- **Semantic similarity** between Alpha and Beta via embeddings
+- **Centroid drift** tracking from conversation center
+- **Semantic distance** over time windows
+- Embedding caching for efficient API usage
+- Multi-provider support (Anthropic, Mistral, local)
+
+### Statistical Framework
+- ADF tests for convergence stationarity
+- Hotelling's T² for node differentiation
 - Bayes factors for attractor existence
 - ICC for cross-run consistency
+
+### Real-Time Convergence Reporting
+- Automatic alerts when similarity exceeds thresholds
+- Pattern quarantine for overused phrases
+- Diversity injection triggers
+- Daily metrics reports with trend analysis
 
 ## CI/CD
 
 GitHub Actions automate:
-- **ci.yml**: Linting, Julia tests, Hugo builds
+- **ci.yml**: Linting, Julia tests, Hugo builds (required checks enforced)
 - **deploy.yml**: GitHub Pages deployment
-- **conversation.yml**: Scheduled/manual turn execution
+- **conversation.yml**: Scheduled turn execution (every 6 hours)
 - **codeql.yml**: Security scanning
-- **metrics-report.yml**: Automated analysis reports
+- **metrics-report.yml**: Daily automated analysis reports
+- **repo-maintenance.yml**: Weekly cleanup (artifacts, branches, caches)
+
+### Git Hooks (v1.1.0)
+Install with `just setup` or `just hooks-install`:
+- **Pre-commit**: Secret scanning, large file detection, SHA pinning verification
+- **Commit-msg**: Conventional commits format enforcement
 
 ## Accessibility
 
@@ -220,28 +263,35 @@ WCAG 2.2 AAA compliance target:
 - [x] Metrics collection framework
 - [x] CI/CD with SHA-pinned actions
 
+### Phase 1.1: Infrastructure Hardening ✓ (v1.1.0)
+- [x] Embedding-based semantic convergence metrics
+- [x] Real-time convergence alerting and reporting
+- [x] Git hooks for quality enforcement
+- [x] Repo maintenance automation (robot-repo-cleaner)
+- [x] CI summary with required checks
+- [x] Personality pattern documentation
+
 ### Phase 2: Data Collection (Current)
 - [ ] Reach 50+ turns for statistical significance
 - [ ] Tune anti-convergence parameters
-- [ ] Document emerging personality patterns
-- [ ] Implement convergence alerting
+- [ ] Refine embedding-based metrics
 
 ### Phase 3: Statistical Analysis
 - [ ] ADF stationarity tests for convergence
 - [ ] Hotelling's T² for node differentiation
 - [ ] Bayes factors for attractor existence
-- [ ] Embedding-based semantic convergence
+- [ ] Formal hypothesis testing pipeline
 
 ### Phase 4: Extended Experiments
 - [ ] Multi-provider comparison (Claude vs Mistral vs Local)
-- [ ] 3+ node configurations with coalition dynamics
+- [ ] **3+ node configurations** with coalition dynamics
 - [ ] Parameter sensitivity analysis
 - [ ] Replication studies with different seeds
 
 ### Phase 5: Publication & Dissemination
 - [ ] Formal academic writeup
 - [ ] Open dataset release
-- [ ] Interactive visualisation dashboard
+- [ ] Interactive Phoenix/LiveView dashboard
 - [ ] Community engagement and replication
 
 See `STATE.scm` for detailed project state and `claude.adoc` for full specification.
