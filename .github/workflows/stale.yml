@@ -10,14 +10,16 @@ on:
     - cron: "0 1 * * *"
   workflow_dispatch:
 
-permissions:
-  issues: write
-  pull-requests: write
+
+permissions: read-all
 
 jobs:
   stale:
     name: Mark Stale
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - name: Mark stale issues and PRs
         uses: actions/stale@28ca1036281a5e5922ead5184a1bbf96e5fc984e # v9.0.0

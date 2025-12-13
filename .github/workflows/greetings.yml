@@ -10,14 +10,16 @@ on:
   issues:
     types: [opened]
 
-permissions:
-  issues: write
-  pull-requests: write
+
+permissions: read-all
 
 jobs:
   greeting:
     name: Welcome
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
     steps:
       - name: Greet new contributors
         uses: actions/first-interaction@1c4688942c71f71d4f5502a26ea67c331730fa4d # v3.1.0
